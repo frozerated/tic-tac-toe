@@ -30,6 +30,26 @@ function GameBoard(){
 }
 
 
+function GameController(
+    playerOne = 'Player One',
+    playerTwo = 'PlyerTwo'
+){
+    const board = gameBoard();
+    const players =[
+        {
+            name: playerOne,
+            marker: 'x'
+        },
+        {
+            name: playerTwo,
+            marker: 'y'
+        }
+    ];
+    
+
+}
+
+
 const gameBoard = GameBoard();
 gameBoard.addMark(3, 'x');
 gameBoard.addMark(5, 'y');
