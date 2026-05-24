@@ -24,6 +24,15 @@ function GameBoard(){
             }
         }
     }
+
+    const showBoard = ()=>{
+
+    }
+
+
+
+
+
     return{
         getBoard,
         addMark,
@@ -116,12 +125,42 @@ function GameController(
 
     return {
         playRound,
-        getActivePlayer
+        getActivePlayer,
+        getBoard: board.getBoard,
     }
 }
 
 
-const game = GameController();
+function ScreenController(){
+    const game = GameController();
+    const boardContainer = document.querySelector('.board')
+
+    //display board
+    //get board
+    //for every cell, create a button, add an id and class
+
+    const board = game.getBoard();
+
+    for(row of board){
+        for(cell of row){
+            let cellButton = document.createElement('button');
+            cellButton.textContent ='';
+            cellButton.id = cell;
+            cellButton.classList = 'cell';
+            boardContainer.appendChild(cellButton);
+        }
+    }
+
+
+
+
+}
+
+ScreenController();
+
+// const game = GameController();
+
+
 // gameBoard.addMark(3, 'x');
 // gameBoard.addMark(5, 'y');
 // console.log(gameBoard.getBoard());
