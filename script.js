@@ -144,10 +144,15 @@ function ScreenController(){
     for(row of board){
         for(cell of row){
             let cellButton = document.createElement('button');
-            cellButton.textContent ='';
+            cellButton.textContent =cell;
             cellButton.id = cell;
             cellButton.classList = 'cell';
+            cellButton.addEventListener('click', event =>{
+                cellButton.textContent = game.getActivePlayer().marker;
+                game.playRound(event.target.id)
+            })
             boardContainer.appendChild(cellButton);
+
         }
     }
 
