@@ -6,11 +6,25 @@ function GameBoard(){
     for(let i = 0; i < row; i++){
         board[i] = [];
         for(let j = 0; j < column; j++){
-            board[i].push(j);
+            board[i].push(Cell());
         }
     }
-
     return board;
+}
+
+function Cell(){
+    let value = 0;
+
+    let addMarker = (player)=>{
+        value = player;
+    }
+
+    const getValue = () => value;
+
+    return{
+        addMarker,
+        getValue,
+    };
 }
 
 console.log(GameBoard());
