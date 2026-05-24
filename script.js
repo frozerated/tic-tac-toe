@@ -17,7 +17,9 @@ function GameBoard(){
         for(let i=0; i < row; i++){
             for(let j =0; j < column; j++){
                 if(board[i][j] == cell){
+                    let temp = board[i][j];
                     board[i][j] = player;
+                    return temp;
                 }
             }
         }
@@ -35,14 +37,27 @@ function GameController(
     playerTwo = 'PlyerTwo'
 ){
     const board = GameBoard();
+    const winningCombinations = [
+        [1,2,3],
+        [4,5,6],
+        [7,8,9],
+        [1,4,7],
+        [2,5,8],
+        [3,6,9],
+        [1,5,9],
+        [3,5,7]
+    ]
+
     const players =[
         {
             name: playerOne,
-            marker: 'x'
+            marker: 'x',
+            markerPos: [],
         },
         {
             name: playerTwo,
-            marker: 'y'
+            marker: 'y',
+            markerPos: []
         }
     ];
 
@@ -56,13 +71,39 @@ function GameController(
 
     const showUpdatedBoard = () => {
     
-        console.log(`${getActivePlayer.name}'s turn.`);
+        console.log(`${getActivePlayer().name}'s turn.`);
         console.log(board.getBoard());
     }
 
+    const endRound = (playerName) =>{
+        console.log(`GAME OVER! ${getActivePlayer().name} WON!`);
+        
+    }
+
+    const checkWinner = (activePlayer) =>{
+        playerPos = activePlayer.markerPos;
+        playerPos.sort((a, b) => a - b);
+        playerPos = playerPos.join();
+        console.log(playerPos);
+
+
+        for(combination of winningCombinations){
+            if(playerPos.includes(combination)){
+                console.log('The Winner is ' + activePlayer.name);
+                return true;
+            }
+        }
+        return false;
+    }
+
     const playRound = (cell) => {
-        console.log(`${getActivePlayer.name} Mark Finished`)
-        board.addMark(cell, getActivePlayer().marker);
+        console.log(`${getActivePlayer().name} Mark Finished`)
+        playerMarkerPos = board.addMark(cell, getActivePlayer().marker)
+        getActivePlayer().markerPos.push(playerMarkerPos);
+        console.log(getActivePlayer().markerPos);
+
+        if(checkWinner(getActivePlayer())) return;
+
         switchPlayerTurn();
         showUpdatedBoard();
     }
@@ -79,4 +120,3 @@ const game = GameController();
 // gameBoard.addMark(3, 'x');
 // gameBoard.addMark(5, 'y');
 // console.log(gameBoard.getBoard());
-
