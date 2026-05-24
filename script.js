@@ -46,6 +46,7 @@ function GameController(
     playerTwo = 'PlyerTwo'
 ){
     const board = GameBoard();
+    let onGoing = true;
     const winningCombinations = [
         [1,2,3],
         [4,5,6],
@@ -79,13 +80,16 @@ function GameController(
     const getActivePlayer = () => activePlayer;
 
     const showUpdatedBoard = () => {
-    
         console.log(`${getActivePlayer().name}'s turn.`);
-        console.log(board.getBoard());
     }
 
-    const endRound = (playerName) =>{
+    const changeGameStatus = () => {
+        onGoing = onGoing ? false : true;
+    }
+
+    const endRound = () =>{
         console.log(`GAME OVER! ${getActivePlayer().name} WON!`);
+        changeGameStatus();
         
     }
 
@@ -93,19 +97,18 @@ function GameController(
         playerPos = activePlayer.markerPos;
         playerPos.sort((a, b) => a - b);
         playerPos = playerPos.join();
-        console.log(playerPos);
-
 
         for(combination of winningCombinations){
             if(playerPos.includes(combination)){
-                console.log('The Winner is ' + activePlayer.name);
                 return true;
             }
         }
+        
         return false;
     }
 
     const playRound = (cell) => {
+        if(!onGoing) return;
         console.log(`${getActivePlayer().name} Mark Finished`)
         let playerMarkerPos = board.addMark(cell, getActivePlayer().marker)
         if(playerMarkerPos === undefined){
@@ -114,9 +117,11 @@ function GameController(
         }
         
         getActivePlayer().markerPos.push(playerMarkerPos);
+    
+        if(checkWinner(getActivePlayer())){
+            endRound();
+        }
         
-        console.log(getActivePlayer().markerPos);
-        if(checkWinner(getActivePlayer())) return;
 
         switchPlayerTurn();
         showUpdatedBoard();
@@ -127,6 +132,7 @@ function GameController(
         playRound,
         getActivePlayer,
         getBoard: board.getBoard,
+        onGoing,
     }
 }
 
@@ -148,8 +154,13 @@ function ScreenController(){
             cellButton.id = cell;
             cellButton.classList = 'cell';
             cellButton.addEventListener('click', event =>{
-                cellButton.textContent = game.getActivePlayer().marker;
-                game.playRound(event.target.id)
+                if(game.onGoing){
+                    console.log('Game Status:' + game.onGoing);
+                    
+                    cellButton.textContent = game.getActivePlayer().marker;
+                    game.playRound(event.target.id)
+                }
+                
             })
             boardContainer.appendChild(cellButton);
 
@@ -163,7 +174,7 @@ function ScreenController(){
 
 ScreenController();
 
-// const game = GameController();
+const game = GameController();
 
 
 // gameBoard.addMark(3, 'x');
