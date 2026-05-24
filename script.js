@@ -1,30 +1,37 @@
 function GameBoard(){
     const row = 3;
     const column =3;
-    const board = []; 
+    let board = []; 
+    let cellVal = 1;
 
     for(let i = 0; i < row; i++){
         board[i] = [];
         for(let j = 0; j < column; j++){
-            board[i].push(Cell());
+            board[i].push(cellVal++);
         }
     }
-    return board;
-}
 
-function Cell(){
-    let value = 0;
+    const getBoard = ()=> board;
 
-    let addMarker = (player)=>{
-        value = player;
+    const addMark = (cell, player)=>{
+        for(let i=0; i < row; i++){
+            for(let j =0; j < column; j++){
+                if(board[i][j] == cell){
+                    board[i][j] = player;
+                }
+            }
+        }
+    }
+    return{
+        getBoard,
+        addMark,
     }
 
-    const getValue = () => value;
-
-    return{
-        addMarker,
-        getValue,
-    };
 }
 
-console.log(GameBoard());
+
+const gameBoard = GameBoard();
+gameBoard.addMark(3, 'x');
+gameBoard.addMark(5, 'y');
+console.log(gameBoard.getBoard());
+
