@@ -34,7 +34,7 @@ function GameController(
     playerOne = 'Player One',
     playerTwo = 'PlyerTwo'
 ){
-    const board = gameBoard();
+    const board = GameBoard();
     const players =[
         {
             name: playerOne,
@@ -54,12 +54,29 @@ function GameController(
 
     const getActivePlayer = () => activePlayer;
 
+    const showUpdatedBoard = () => {
+    
+        console.log(`${getActivePlayer.name}'s turn.`);
+        console.log(board.getBoard());
+    }
 
+    const playRound = (cell) => {
+        console.log(`${getActivePlayer.name} Mark Finished`)
+        board.addMark(cell, getActivePlayer().marker);
+        switchPlayerTurn();
+        showUpdatedBoard();
+    }
+
+
+    return {
+        playRound,
+        getActivePlayer
+    }
 }
 
 
-const gameBoard = GameBoard();
-gameBoard.addMark(3, 'x');
-gameBoard.addMark(5, 'y');
-console.log(gameBoard.getBoard());
+const game = GameController();
+// gameBoard.addMark(3, 'x');
+// gameBoard.addMark(5, 'y');
+// console.log(gameBoard.getBoard());
 
