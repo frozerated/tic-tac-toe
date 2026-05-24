@@ -98,10 +98,15 @@ function GameController(
 
     const playRound = (cell) => {
         console.log(`${getActivePlayer().name} Mark Finished`)
-        playerMarkerPos = board.addMark(cell, getActivePlayer().marker)
+        let playerMarkerPos = board.addMark(cell, getActivePlayer().marker)
+        if(playerMarkerPos === undefined){
+            console.log('Move Invalid, Try Again.');
+            return;
+        }
+        
         getActivePlayer().markerPos.push(playerMarkerPos);
+        
         console.log(getActivePlayer().markerPos);
-
         if(checkWinner(getActivePlayer())) return;
 
         switchPlayerTurn();
