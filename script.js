@@ -80,12 +80,15 @@ function GameController(
     const getActivePlayer = () => activePlayer;
 
     const showUpdatedBoard = () => {
+    
         console.log(`${getActivePlayer().name}'s turn.`);
     }
 
     const changeGameStatus = () => {
         onGoing = onGoing ? false : true;
     }
+
+    const getGameStatus = () => onGoing;
 
     const endRound = () =>{
         console.log(`GAME OVER! ${getActivePlayer().name} WON!`);
@@ -108,7 +111,14 @@ function GameController(
     }
 
     const playRound = (cell) => {
-        if(!onGoing) return;
+
+    
+        if(!onGoing){
+            console.log('Game Has Ended.');
+            
+            return;
+            
+        }
         console.log(`${getActivePlayer().name} Mark Finished`)
         let playerMarkerPos = board.addMark(cell, getActivePlayer().marker)
         if(playerMarkerPos === undefined){
@@ -120,6 +130,7 @@ function GameController(
     
         if(checkWinner(getActivePlayer())){
             endRound();
+            // return;
         }
         
 
@@ -132,7 +143,7 @@ function GameController(
         playRound,
         getActivePlayer,
         getBoard: board.getBoard,
-        onGoing,
+        getGameStatus,
     }
 }
 
@@ -140,10 +151,6 @@ function GameController(
 function ScreenController(){
     const game = GameController();
     const boardContainer = document.querySelector('.board')
-
-    //display board
-    //get board
-    //for every cell, create a button, add an id and class
 
     const board = game.getBoard();
 
@@ -154,7 +161,7 @@ function ScreenController(){
             cellButton.id = cell;
             cellButton.classList = 'cell';
             cellButton.addEventListener('click', event =>{
-                if(game.onGoing){
+                if(game.getGameStatus()){
                     console.log('Game Status:' + game.onGoing);
                     
                     cellButton.textContent = game.getActivePlayer().marker;
@@ -173,10 +180,3 @@ function ScreenController(){
 }
 
 ScreenController();
-
-const game = GameController();
-
-
-// gameBoard.addMark(3, 'x');
-// gameBoard.addMark(5, 'y');
-// console.log(gameBoard.getBoard());
