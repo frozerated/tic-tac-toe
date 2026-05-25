@@ -162,25 +162,29 @@ function ScreenController(){
 
     const board = game.getBoard();
 
-    for(row of board){
-        for(cell of row){
-            let cellButton = document.createElement('button');
-            cellButton.textContent =cell;
-            cellButton.id = cell;
-            cellButton.classList = 'cell';
-            cellButton.addEventListener('click', event =>{
-                if(game.getGameStatus()){
-                    cellButton.textContent = game.getActivePlayer().marker;
-                    cellButton.disabled = true;
-                    game.playRound(event.target.id)
-                }
-                
-            })
-            boardContainer.appendChild(cellButton);
 
+
+    const displayBoard = () =>{
+        for(row of board){
+            for(cell of row){
+                let cellButton = document.createElement('button');
+                cellButton.textContent =cell;
+                cellButton.id = cell;
+                cellButton.classList = 'cell';
+                cellButton.addEventListener('click', event =>{
+                    if(game.getGameStatus()){
+                        cellButton.textContent = game.getActivePlayer().marker;
+                        cellButton.disabled = true;
+                        game.playRound(event.target.id)
+                    }
+                })
+                boardContainer.appendChild(cellButton);
+
+            }
         }
     }
 
+    displayBoard();
 
 
 }
