@@ -43,7 +43,7 @@ function GameBoard(){
 
 function GameController(
     playerOne = 'Player One',
-    playerTwo = 'PlyerTwo'
+    playerTwo = 'PlayerTwo'
 ){
     const board = GameBoard();
     let onGoing = true;
@@ -61,12 +61,14 @@ function GameController(
     const players =[
         {
             name: playerOne,
+            id: 'playerOne',
             marker: 'x',
             markerPos: [],
             score: 0,
         },
         {
             name: playerTwo,
+            id: 'playerTwo',
             marker: 'y',
             markerPos: [],
             score:0,
@@ -76,6 +78,8 @@ function GameController(
     let activePlayer = players[0];
     
     const getPlayerScore = () => activePlayer.score;
+
+    const getPlayerID = () => activePlayer.id;
 
     const addPlayerScore = () => activePlayer.score++;
     
@@ -152,6 +156,7 @@ function GameController(
         getActivePlayer,
         getBoard: board.getBoard,
         getGameStatus,
+        getPlayerScore,
     }
 }
 
@@ -163,7 +168,6 @@ function ScreenController(){
     const board = game.getBoard();
 
 
-
     const displayBoard = () =>{
         for(row of board){
             for(cell of row){
@@ -172,16 +176,29 @@ function ScreenController(){
                 cellButton.id = cell;
                 cellButton.classList = 'cell';
                 cellButton.addEventListener('click', event =>{
+                    const activePlayer = game.getActivePlayer();
+
                     if(game.getGameStatus()){
-                        cellButton.textContent = game.getActivePlayer().marker;
+                        cellButton.textContent = activePlayer.marker;
                         cellButton.disabled = true;
                         game.playRound(event.target.id)
+                        
                     }
+                    updateScoreDisplay(activePlayer.id);
                 })
                 boardContainer.appendChild(cellButton);
 
             }
         }
+    }
+
+
+
+    const updateScoreDisplay = (player) =>{
+        console.log(player);
+        
+        let playerScoreDisplay = document.getElementById(player);
+        playerScoreDisplay.value = 'Score: ' + game.getPlayerScore();
     }
 
     displayBoard();
