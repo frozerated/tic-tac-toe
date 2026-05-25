@@ -96,18 +96,17 @@ function GameController(
         
     }
 
-    const checkWinner = (activePlayer) =>{
-        playerPos = activePlayer.markerPos;
-        playerPos.sort((a, b) => a - b);
-        playerPos = playerPos.join();
+    const checkWinner = ()=>{
+        let comboCheck = [];
 
-        for(combination of winningCombinations){
-            if(playerPos.includes(combination)){
-                return true;
+
+        for(combo of winningCombinations){
+            comboCheck = combo.filter((num) => getActivePlayer().markerPos.includes(num));
+            if(comboCheck.length >= 3){
+                return true
             }
         }
         
-        return false;
     }
 
     const playRound = (cell) => {
@@ -127,7 +126,8 @@ function GameController(
         }
         
         getActivePlayer().markerPos.push(playerMarkerPos);
-    
+        // checkCombination();
+        
         if(checkWinner(getActivePlayer())){
             endRound();
             // return;
@@ -162,7 +162,6 @@ function ScreenController(){
             cellButton.classList = 'cell';
             cellButton.addEventListener('click', event =>{
                 if(game.getGameStatus()){
-                    console.log('Game Status:' + game.onGoing);
                     
                     cellButton.textContent = game.getActivePlayer().marker;
                     game.playRound(event.target.id)
