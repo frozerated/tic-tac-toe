@@ -26,6 +26,18 @@
 
     gap:20px;
 }
+
+.main{
+    display: flex;
+    justify-content: space-evenly;
+}
+
+
+
+
+
+
+
 /* .cell{
     padding:15px;
 } */
