@@ -6,7 +6,14 @@
 .board{
     display: grid;
     grid-template-columns: repeat(3,1fr);
-    grid-template-rows: repeat(3, 125px);
+    /* grid-template-rows: repeat(3, calc(1/1)); */
+    gap:12px;
+
+    justify-self: center;
+    width: 550px    ;
+    min-height: 550px;
+    
+    margin:24px;
 }
 
 /* .cell{
