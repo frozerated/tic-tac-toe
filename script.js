@@ -87,8 +87,10 @@ function GameController(
 
     let activePlayer = players[0];
     
-    const getPlayerScore = () => activePlayer.score;
+    
+    const getPlayerScore = (player_no) => players[player_no == 'one' ? 0 : 1].score;
 
+    
     const getPlayerID = () => activePlayer.id;
 
     const addPlayerScore = () => activePlayer.score++;
@@ -162,9 +164,7 @@ function GameController(
         getActivePlayer().markerPos.push(playerMarkerPos);
         
         if(checkWinner(getActivePlayer())){
-            addPlayerScore();
-            console.log(getPlayerScore());
-            
+            addPlayerScore();            
             endRound();
             return;
         }
@@ -203,18 +203,8 @@ function ScreenController(){
             cell.disabled = false;
        }
        if(!game.getGameStatus()){
-            console.log('error');
-            
             game.changeGameStatus();
        }
-
-
-        //pag may nanalo na
-        //mag ooff unggame stats
-        //pag nag restart sya na may winner
-        //mag set to true ulet ung stats
-        //pero if nag restart sya na wala winner
-        //reset lang ng board
 
        game.restartGame();
     }
@@ -243,7 +233,7 @@ function ScreenController(){
                         game.playRound(event.target.id);
                         
                     }
-                    updateScoreDisplay(activePlayer.id);
+                    updateScoreDisplay();
                 })
                 boardContainer.appendChild(cellButton);
 
@@ -253,11 +243,12 @@ function ScreenController(){
 
 
 
-    const updateScoreDisplay = (player) =>{
-        console.log(player);
+    const updateScoreDisplay = () =>{
+        const playerOneScore = document.querySelector("#playerOne");
+        const playerTwoScore = document.querySelector("#playerTwo");
         
-        let playerScoreDisplay = document.getElementById(player);
-        playerScoreDisplay.value = 'Score: ' + game.getPlayerScore();
+        playerOneScore.value = 'Score: ' +  game.getPlayerScore('one');
+        playerTwoScore.value = 'Score: ' +  game.getPlayerScore('two');
     }
 
 
@@ -269,8 +260,7 @@ function ScreenController(){
 
 }
 
-a = ScreenController();
-
+ScreenController();
 
 // Console Testing: 
 // const game = GameController();
