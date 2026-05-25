@@ -130,7 +130,7 @@ function GameController(
         
         if(checkWinner(getActivePlayer())){
             endRound();
-            // return;
+            return;
         }
         
 
