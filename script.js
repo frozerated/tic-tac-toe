@@ -126,7 +126,6 @@ function GameController(
         }
         
         getActivePlayer().markerPos.push(playerMarkerPos);
-        // checkCombination();
         
         if(checkWinner(getActivePlayer())){
             endRound();
@@ -162,8 +161,8 @@ function ScreenController(){
             cellButton.classList = 'cell';
             cellButton.addEventListener('click', event =>{
                 if(game.getGameStatus()){
-                    
                     cellButton.textContent = game.getActivePlayer().marker;
+                    cellButton.disabled = true;
                     game.playRound(event.target.id)
                 }
                 
@@ -172,7 +171,6 @@ function ScreenController(){
 
         }
     }
-
 
 
 
