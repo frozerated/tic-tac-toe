@@ -56,6 +56,7 @@ function GameController(
     playerTwo = 'PlayerTwo'
 ){
     const board = GameBoard();
+    const occupiedCell = [];
     let onGoing = true;
     const winningCombinations = [
         [1,2,3],
@@ -152,24 +153,31 @@ function GameController(
         
     }
 
+    const checkDraw = () => occupiedCell.length >= 9;
+
     const playRound = (cell) => {
 
     
         if(!onGoing){
             console.log('Game Has Ended.');
-            
-            return;
-            
+            return;            
         }
+
         console.log(`${getActivePlayer().name} Mark Finished`)
         let playerMarkerPos = board.addMark(cell, getActivePlayer().marker)
         if(playerMarkerPos === undefined){
             console.log('Move Invalid, Try Again.');
             return;
         }
-        
+        occupiedCell.push(playerMarkerPos);
         getActivePlayer().markerPos.push(playerMarkerPos);
         
+
+        if(checkDraw()){
+            console.log('A DRAW');
+            return;
+        }
+         
         if(checkWinner(getActivePlayer())){
             addPlayerScore();            
             endRound();
