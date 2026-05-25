@@ -110,6 +110,13 @@ function GameController(
         
         
     }
+    const resetGame = () => {
+        players[0].score = 0;
+        players[1].score = 0;
+        restartGame();
+    }
+
+
 
     const getActivePlayer = () => activePlayer;
 
@@ -183,6 +190,7 @@ function GameController(
         getPlayerScore,
         restartGame,
         changeGameStatus,
+        resetGame,
     }
 }
 
@@ -212,6 +220,12 @@ function ScreenController(){
     const controllerFunc = () =>{
         restartButton.addEventListener('click', event =>{
             restartBoard();
+        })
+
+        resetButton.addEventListener('click', event =>{
+            restartBoard();
+            game.resetGame();
+            updateScoreDisplay();
         })
     }
 
