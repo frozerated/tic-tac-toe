@@ -63,15 +63,21 @@ function GameController(
             name: playerOne,
             marker: 'x',
             markerPos: [],
+            score: 0,
         },
         {
             name: playerTwo,
             marker: 'y',
-            markerPos: []
+            markerPos: [],
+            score:0,
         }
     ];
 
     let activePlayer = players[0];
+    
+    const getPlayerScore = () => activePlayer.score;
+
+    const addPlayerScore = () => activePlayer.score++;
     
     const switchPlayerTurn = () =>{
         activePlayer = activePlayer === players[0] ? players[1] : players[0];
@@ -128,6 +134,9 @@ function GameController(
         getActivePlayer().markerPos.push(playerMarkerPos);
         
         if(checkWinner(getActivePlayer())){
+            addPlayerScore();
+            console.log(getPlayerScore());
+            
             endRound();
             return;
         }
