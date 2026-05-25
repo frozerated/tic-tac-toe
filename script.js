@@ -2,13 +2,19 @@ function GameBoard(){
     const row = 3;
     const column =3;
     let board = []; 
-    let cellVal = 1;
+  
 
-    for(let i = 0; i < row; i++){
-        board[i] = [];
-        for(let j = 0; j < column; j++){
-            board[i].push(cellVal++);
+    
+    const createBoard = () =>{
+        let cellVal = 1;
+        for(let i = 0; i < row; i++){
+            board[i] = [];
+            for(let j = 0; j < column; j++){
+                board[i].push(cellVal++);
+            }
         }
+
+
     }
 
     const getBoard = ()=> board;
@@ -27,7 +33,10 @@ function GameBoard(){
 
     const showBoard = ()=>{
 
+
     }
+
+    createBoard();
 
 
 
@@ -36,6 +45,7 @@ function GameBoard(){
     return{
         getBoard,
         addMark,
+        createBoard,
     }
 
 }
@@ -86,6 +96,19 @@ function GameController(
     const switchPlayerTurn = () =>{
         activePlayer = activePlayer === players[0] ? players[1] : players[0];
     };
+
+    const restartGame = () =>{
+        // activePlayer.markerPos = [];
+        for(player of players){
+            player['markerPos'] = [];
+        }
+
+        changeGameStatus();
+        board.createBoard();
+        console.log("Restart Successful");
+        
+        
+    }
 
     const getActivePlayer = () => activePlayer;
 
@@ -157,6 +180,7 @@ function GameController(
         getBoard: board.getBoard,
         getGameStatus,
         getPlayerScore,
+        restartGame,
     }
 }
 
@@ -207,3 +231,15 @@ function ScreenController(){
 }
 
 ScreenController();
+
+
+// Console Testing: 
+const game = GameController();
+game.playRound(1);
+game.playRound(9);
+game.playRound(2);
+game.playRound(8);
+game.playRound(3);
+game.playRound(1);
+
+
