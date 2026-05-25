@@ -102,8 +102,7 @@ function GameController(
         for(player of players){
             player['markerPos'] = [];
         }
-
-        changeGameStatus();
+        activePlayer = players[0];
         board.createBoard();
         console.log("Restart Successful");
         
@@ -119,6 +118,8 @@ function GameController(
 
     const changeGameStatus = () => {
         onGoing = onGoing ? false : true;
+        console.log('Changed game status to: ' + onGoing);
+        
     }
 
     const getGameStatus = () => onGoing;
@@ -181,6 +182,7 @@ function GameController(
         getGameStatus,
         getPlayerScore,
         restartGame,
+        changeGameStatus,
     }
 }
 
@@ -188,8 +190,41 @@ function GameController(
 function ScreenController(){
     const game = GameController();
     const boardContainer = document.querySelector('.board')
-
+    const resetButton = document.querySelector('#reset');
+    const restartButton = document.querySelector('#restart');
     const board = game.getBoard();
+
+
+
+    const restartBoard = ()=>{
+       let cells = boardContainer.querySelectorAll('.cell');
+       for(cell of cells){
+            cell.textContent = '';
+            cell.disabled = false;
+       }
+       if(!game.getGameStatus()){
+            console.log('error');
+            
+            game.changeGameStatus();
+       }
+
+
+        //pag may nanalo na
+        //mag ooff unggame stats
+        //pag nag restart sya na may winner
+        //mag set to true ulet ung stats
+        //pero if nag restart sya na wala winner
+        //reset lang ng board
+
+       game.restartGame();
+    }
+
+    const controllerFunc = () =>{
+        restartButton.addEventListener('click', event =>{
+            restartBoard();
+        })
+    }
+
 
 
     const displayBoard = () =>{
@@ -205,7 +240,7 @@ function ScreenController(){
                     if(game.getGameStatus()){
                         cellButton.textContent = activePlayer.marker;
                         cellButton.disabled = true;
-                        game.playRound(event.target.id)
+                        game.playRound(event.target.id);
                         
                     }
                     updateScoreDisplay(activePlayer.id);
@@ -225,21 +260,25 @@ function ScreenController(){
         playerScoreDisplay.value = 'Score: ' + game.getPlayerScore();
     }
 
+
+
     displayBoard();
+    controllerFunc();
+    
 
 
 }
 
-ScreenController();
+a = ScreenController();
 
 
 // Console Testing: 
-const game = GameController();
-game.playRound(1);
-game.playRound(9);
-game.playRound(2);
-game.playRound(8);
-game.playRound(3);
-game.playRound(1);
+// const game = GameController();
+// game.playRound(1);
+// game.playRound(9);
+// game.playRound(2);
+// game.playRound(8);
+// game.playRound(3);
+// game.playRound(1);
 
 
