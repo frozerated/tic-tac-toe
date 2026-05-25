@@ -6,7 +6,7 @@
 .board{
     display: grid;
     grid-template-columns: repeat(3,1fr);
-    /* grid-template-rows: repeat(3, calc(1/1)); */
+    grid-template-rows: repeat(3, 1fr) 100px;
     gap:12px;
 
     justify-self: center;
@@ -16,6 +16,16 @@
     margin:24px;
 }
 
+
+.controls{
+    grid-column: span 3;
+    grid-row: 4;
+    align-self: center;
+    justify-content: center;
+    display:flex;
+
+    gap:20px;
+}
 /* .cell{
     padding:15px;
 } */
