@@ -72,14 +72,14 @@ function GameController(
         {
             name: playerOne,
             id: 'playerOne',
-            marker: 'x',
+            marker: 'X',
             markerPos: [],
             score: 0,
         },
         {
             name: playerTwo,
             id: 'playerTwo',
-            marker: 'y',
+            marker: 'O',
             markerPos: [],
             score:0,
         }
@@ -263,7 +263,7 @@ function ScreenController(){
                 
                 cellButton.classList = 'cell';
                 cellButton.id = cell;
-                markedCell = cellButton.id == 'x' || cellButton.id == 'y'
+                markedCell = cellButton.id == 'X' || cellButton.id == 'O'
                 if(markedCell) {
                     cellButton.disabled=true;
                     cellButton.textContent = cell;
