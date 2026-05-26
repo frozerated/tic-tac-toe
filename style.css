@@ -104,6 +104,18 @@ body{
     color: var(--winner-text-color);
 }
 
+.turn span{
+    font-weight: 700;
+    text-decoration: underline;
+}
+
+.turn span.X{
+    color: var(--player1-color);
+}
+.turn span.O{
+    color:var(--player2-color);
+}
+
 
 .main{
     display: grid;
