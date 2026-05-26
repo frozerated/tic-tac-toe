@@ -221,6 +221,8 @@ function ScreenController(){
 
 
     const restartBoard = ()=>{
+        playerTurnDiv.className = 'turn';
+
        let cells = boardDiv.querySelectorAll('.cell');
        for(cell of cells){
             cell.textContent = '';
@@ -258,6 +260,7 @@ function ScreenController(){
 
         if(!game.getGameStatus()){
             playerTurnDiv.textContent = game.getResult();
+            playerTurnDiv.classList = "turn result"
         }
 
 
