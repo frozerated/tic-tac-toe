@@ -12,8 +12,6 @@
     justify-self: center;
     width: 550px    ;
     min-height: 550px;
-    
-    margin:24px;
 }
 
 
@@ -37,7 +35,14 @@
 .main{
     display: flex;
     justify-content: space-evenly;
+    margin-top:12px;
 }
+
+.center > *:not(:first-child){
+    margin-top:16px;
+}
+
+
 
 
 
