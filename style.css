@@ -5,6 +5,16 @@
     --color-bg-cell-hover: #E7EFE7;
     --color-border: #C8D2C7;
 
+      /* Game Marks */
+    --color-x: #5F7A61;
+    --color-o: #7D8F69;
+
+    /* Text */
+    --color-text-primary: #37423D;
+    --color-text-result: #6E7B74;
+    --color-text-result: #4F6B58;
+
+
 }
 
 
@@ -42,43 +52,36 @@ body{
 }
 
 
-
-
 .controls{
     grid-column: span 3;
-    grid-row: 5;
-    align-self: center;
-    justify-content: center;
-    display:flex;
-
-    gap:20px;
 }
 
 .turn{
     font-size: 36px;
-    text-align: center;
+    /* text-align: center; */
+    grid-column: span 3;
 }
-
 
 
 .main{
     display: grid;
-    grid-template-columns: 1fr 2fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 50px 1fr 200px;
     margin-top:12px;
     justify-items: center;
+
+    row-gap: 12px;
     
 }
 
-.center > *:not(:first-child){
-    margin-top:16px;
+input, p{
+    border: none;
+    font-size: 24px;
 }
 
+.name{
 
-
-
-
-
-
+}
 
 
 /* .cell{
