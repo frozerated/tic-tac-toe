@@ -76,6 +76,7 @@ body{
     border:3px inset var(--cell-border-color);
     color:white;
     border-radius:15px;
+    font-weight: 600;
 }
 
 .cell:hover:not(:disabled){
@@ -125,6 +126,9 @@ input{
     border-bottom:2px solid var(--name-input-border-color);
     color:var(--name-input-text-color);
     font-weight:600;
+    border-radius: 10px;
+    padding:4px 18px;
+    width: 400px
 }
 
 .player-container{
@@ -133,17 +137,20 @@ input{
     text-align:center;
 }
 
+
 .marker{
     /* align-self: center; */
     margin-top:16px;
     font-size: 125px;
 }
 
-.marker.player1{
+
+
+.marker.player1, .cell#X{
     color: var(--player1-color);
 }
 
-.marker.player2{
+.marker.player2, .cell#O{
     color:var(--player2-color);
 }
 
