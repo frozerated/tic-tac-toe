@@ -107,8 +107,7 @@ function GameController(
         activePlayer = players[0];
         board.createBoard();
         console.log("Restart Successful");
-        
-        
+
     }
     const resetGame = () => {
         players[0].score = 0;
@@ -212,11 +211,13 @@ function ScreenController(){
     const game = GameController();
     const resetButton = document.querySelector('#reset');
     const restartButton = document.querySelector('#restart');
+    const playerTurnDiv = document.querySelector(".turn");
+    const boardDiv = document.querySelector(".board");
 
 
 
     const restartBoard = ()=>{
-       let cells = boardContainer.querySelectorAll('.cell');
+       let cells = boardDiv.querySelectorAll('.cell');
        for(cell of cells){
             cell.textContent = '';
             cell.disabled = false;
@@ -224,8 +225,8 @@ function ScreenController(){
        if(!game.getGameStatus()){
             game.changeGameStatus();
        }
-
        game.restartGame();
+        updateScreen();
     }
 
     const controllerFunc = () =>{
@@ -241,8 +242,7 @@ function ScreenController(){
     }
 
 
-    const playerTurnDiv = document.querySelector(".turn");
-    const boardDiv = document.querySelector(".board");
+
 
     const updateScreen = () =>{
         const board = game.getBoard();
