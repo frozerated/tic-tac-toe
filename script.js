@@ -256,7 +256,9 @@ function ScreenController(){
         
         
         const activePlayer = game.getActivePlayer();
-        playerTurnDiv.textContent = `${activePlayer.name}'s turn...`;
+        const activeMarker = activePlayer.marker;
+        const setActiveClass = `class = ${activeMarker}`
+        playerTurnDiv.innerHTML = `<span ${setActiveClass}>${activeMarker}</span> is making a move`;
 
         if(!game.getGameStatus()){
             playerTurnDiv.textContent = game.getResult();
