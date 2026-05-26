@@ -6,7 +6,7 @@
 .board{
     display: grid;
     grid-template-columns: repeat(3,1fr);
-    grid-template-rows: repeat(3, 1fr) 100px;
+    grid-template-rows: repeat(3, 1fr);
     gap:12px;
 
     justify-self: center;
@@ -19,13 +19,20 @@
 
 .controls{
     grid-column: span 3;
-    grid-row: 4;
+    grid-row: 5;
     align-self: center;
     justify-content: center;
     display:flex;
 
     gap:20px;
 }
+
+.turn{
+    font-size: 36px;
+    text-align: center;
+}
+
+
 
 .main{
     display: flex;
