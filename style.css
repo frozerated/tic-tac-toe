@@ -76,7 +76,10 @@ body{
     border:3px inset var(--cell-border-color);
     color:white;
     border-radius:15px;
-    
+}
+
+.cell:hover:not(:disabled){
+    background-color: var(--cell-hover-bg-color);
 }
 
 
@@ -159,6 +162,13 @@ input{
     
 }
 
+.restart:hover{
+    background-color: var(--restart-btn-hover-bg-color);
+}
+
 .reset{
     background-color: var(--reset-btn-bg-color) ;
+}
+.reset:hover{
+    background-color: var(--reset-btn-hover-bg-color);
 }
