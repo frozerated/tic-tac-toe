@@ -82,6 +82,10 @@ body{
 
 .controls{
     grid-column: span 3;
+    display: flex;
+    margin-top: 26px;
+    gap:16px;
+    align-items: baseline;
 }
 
 .turn{
@@ -143,7 +147,13 @@ input{
 .restart, .reset{
     color:var(--btn-text-color);
     border:none;
+    padding:12px 36px;
+    font-size: 1.6rem;
+    border-radius: 10px;
+    cursor: pointer;
 }
+
+
 .restart{
     background-color: var(--restart-btn-bg-color);
     
