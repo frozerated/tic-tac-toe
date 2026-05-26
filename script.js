@@ -121,7 +121,7 @@ function GameController(
     const checkGameResult = () =>{
         if(checkWinner() || checkDraw()){
             changeGameStatus();
-            if(checkWinner){
+            if(checkWinner()){
                 result = `${getActivePlayer().name} WON!`
                 addPlayerScore();
                 return;
@@ -203,6 +203,7 @@ function GameController(
         restartGame,
         changeGameStatus,
         resetGame,
+        getResult,
     }
 }
 
