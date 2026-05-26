@@ -1,28 +1,50 @@
 :root{
-    --color-bg-body: #F4F6F3;
-    --color-bg-board: #DDE5DD;
-    --color-bg-cell: #FBFCFA;
-    --color-bg-cell-hover: #E7EFE7;
-    --color-border: #C8D2C7;
+  /* Body */
+  --body-bg-color: #0f172c;
 
-      /* Game Marks */
-    --color-x: #5F7A61;
-    --color-o: #7D8F69;
+  /* Board */
+  --board-bg-color: #6C2BD9;
+  --board-shadow: 0 0 25px rgba(149, 103, 229, 0.6), 0 0 60px rgba(109, 203, 226, 0.15);;
 
-    /* Text */
-    --color-text-primary: #37423D;
-    --color-text-result: #6E7B74;
-    --color-text-result: #4F6B58;
+  /* Cells */
+  --cell-bg-color: #1A1F3C;
+  --cell-border-color: #2DD4FF;
+  --cell-hover-bg-color: #24305E;
 
-    --color-name-bg: #FFFFFF;
-    --color-name-border: #C8D2C7;
-    --color-input-border-focus: #8FB996;
-    --color-name-text: #37423D;
+  /* Player Marks */
+  --player1-color: #00F5FF;
+  --player2-color: #FF2DA6;
+
+  /* Feedback Texts */
+  --feedback-text-color: #F8FAFC;
+  --winner-text-color: #FFD60A;
+  --draw-text-color: #FF9F1C;
+
+  /* Player Name Inputs */
+  --name-input-bg-color: #2A1458;
+  --name-input-text-color: #F8FAFC;
+  --name-input-border-color: #00F5FF;
+  --name-input-placeholder-color: #94A3B8;
+  --name-input-focus-bg-color: #341A6E;
+
+  /* Scores */
+  --score-text-color: #39FF14;
+
+  /* Restart Button */
+  --restart-btn-bg-color: #2563EB;
+  --restart-btn-hover-bg-color: #38BDF8;
+
+    --reset-btn-bg-color: #EF4444;
+  --reset-btn-hover-bg-color: #FF4D6D;
+
+  --btn-text-color:#FFFFFF;
+
 }
 
 
+
 body{
-    background-color: var(--color-bg-body);
+    background-color: var(--body-bg-color);
 
 }
 *{
@@ -41,17 +63,20 @@ body{
     justify-self: center;
     width: 500px;
     height: 500px;
-    background-color: var(--color-bg-board);
     padding:20px;
+    
+    background-color: var(--board-bg-color);
+    box-shadow: var(--board-shadow);
     border-radius:20px;
 }
 
 .board > .cell, .cell:disabled{
-    background-color:var(--color-bg-cell);
+    background-color:var(--cell-bg-color);
     font-size: 72px;
-    border:3px inset var(--color-border);
+    border:3px inset var(--cell-border-color);
+    color:white;
     border-radius:15px;
-
+    
 }
 
 
@@ -63,6 +88,8 @@ body{
     font-size: 36px;
     font-weight: 700;
     grid-column: span 3;
+
+    color: var(--feedback-text-color);
 }
 
 
@@ -80,9 +107,16 @@ body{
 input{
     border: none;
     font-size: 32px;
+    background:none;
+}
+.score{
+    color: var(--score-text-color);
 }
 
 .name{
+    background-color:var(--name-input-bg-color);
+    border-bottom:2px solid var(--name-input-border-color);
+    color:var(--name-input-text-color);
     font-weight:600;
 }
 
@@ -98,6 +132,23 @@ input{
     font-size: 125px;
 }
 
-/* .cell{
-    padding:15px;
-} */
+.marker.player1{
+    color: var(--player1-color);
+}
+
+.marker.player2{
+    color:var(--player2-color);
+}
+
+.restart, .reset{
+    color:var(--btn-text-color);
+    border:none;
+}
+.restart{
+    background-color: var(--restart-btn-bg-color);
+    
+}
+
+.reset{
+    background-color: var(--reset-btn-bg-color) ;
+}
