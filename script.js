@@ -149,12 +149,6 @@ function GameController(
 
     const getGameStatus = () => onGoing;
 
-    const endRound = () =>{
-        console.log(`GAME OVER! ${getActivePlayer().name} WON!`);
-        changeGameStatus();
-        
-    }
-
     const checkWinner = ()=>{
         let comboCheck = [];
 
