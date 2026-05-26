@@ -14,7 +14,10 @@
     --color-text-result: #6E7B74;
     --color-text-result: #4F6B58;
 
-
+    --color-name-bg: #FFFFFF;
+    --color-name-border: #C8D2C7;
+    --color-input-border-focus: #8FB996;
+    --color-name-text: #37423D;
 }
 
 
@@ -58,7 +61,7 @@ body{
 
 .turn{
     font-size: 36px;
-    /* text-align: center; */
+    font-weight: 700;
     grid-column: span 3;
 }
 
@@ -74,15 +77,26 @@ body{
     
 }
 
-input, p{
+input{
     border: none;
-    font-size: 24px;
+    font-size: 32px;
 }
 
 .name{
-
+    font-weight:600;
 }
 
+.player-container{
+    display:grid;
+    grid-template-rows: 50px 50px 1fr;
+    text-align:center;
+}
+
+.marker{
+    /* align-self: center; */
+    margin-top:16px;
+    font-size: 125px;
+}
 
 /* .cell{
     padding:15px;
