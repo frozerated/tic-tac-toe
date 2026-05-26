@@ -116,12 +116,28 @@ function GameController(
         restartGame();
     }
 
+    
+    let result = '';
+    const checkGameResult = () =>{
+        if(checkWinner() || checkDraw()){
+            changeGameStatus();
+            if(checkWinner){
+                result = `${getActivePlayer().name} WON!`
+                addPlayerScore();
+                return;
+            }
+            else result = `DRAW`
+        }             
+    }
+
+    const getResult = () => result;
 
 
-    const getActivePlayer = () => activePlayer;
+    function getActivePlayer() {
+        return activePlayer;
+    }
 
     const showUpdatedBoard = () => {
-    
         console.log(`${getActivePlayer().name}'s turn.`);
     }
 
@@ -172,18 +188,13 @@ function GameController(
         getActivePlayer().markerPos.push(playerMarkerPos);
         
 
-        if(checkDraw()){
-            console.log('A DRAW');
+        checkGameResult();
+        if(!getGameStatus()){
+            console.log(getResult());
             return;
         }
-         
-        if(checkWinner(getActivePlayer())){
-            addPlayerScore();            
-            endRound();
-            return;
-        }
-        
 
+        
         switchPlayerTurn();
         showUpdatedBoard();
     }
