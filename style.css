@@ -1,3 +1,17 @@
+:root{
+    --color-bg-body: #F4F6F3;
+    --color-bg-board: #DDE5DD;
+    --color-bg-cell: #FBFCFA;
+    --color-bg-cell-hover: #E7EFE7;
+    --color-border: #C8D2C7;
+
+}
+
+
+body{
+    background-color: var(--color-bg-body);
+
+}
 *{
     margin:0;
     padding: 0;
@@ -11,9 +25,22 @@
     gap:12px;
 
     justify-self: center;
-    width: 550px    ;
+    width: 550px;
     min-height: 550px;
+    background-color: var(--color-bg-board);
+    padding:20px;
+    border-radius:20px;
 }
+
+.board > .cell, .cell:disabled{
+    background-color:var(--color-bg-cell);
+    font-size: 72px;
+    border:3px inset var(--color-border);
+    border-radius:15px;
+
+}
+
+
 
 
 .controls{
@@ -37,6 +64,7 @@
     display: flex;
     justify-content: space-evenly;
     margin-top:12px;
+    
 }
 
 .center > *:not(:first-child){
