@@ -61,8 +61,8 @@ body{
     gap:12px;
 
     justify-self: center;
-    width: 500px;
-    height: 500px;
+    width: 400px;
+    height: 400px;
     padding:20px;
     
     background-color: var(--board-bg-color);
@@ -120,17 +120,17 @@ body{
 .main{
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: 50px 1fr 200px;
-    margin-top:12px;
+    grid-template-rows: 50px 1fr 100px;
+    margin:12px 32px;
     justify-items: center;
 
     row-gap: 12px;
-    
+    column-gap: 32px;
 }
 
 input{
     border: none;
-    font-size: 32px;
+    font-size: 28px;
     background:none;
 }
 .score{
@@ -143,8 +143,8 @@ input{
     color:var(--name-input-text-color);
     font-weight:600;
     border-radius: 10px;
-    padding:4px 18px;
-    width: 400px
+    padding:0px 18px;
+    width: 300px
 }
 .name:focus{
     background-color: var(--name-input-focus-bg-color);
@@ -159,6 +159,7 @@ input{
     display:grid;
     grid-template-rows: 50px 50px 1fr;
     text-align:center;
+    /* padding-left: 24px; */
 }
 
 
