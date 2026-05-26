@@ -55,7 +55,7 @@ function GameController(
     playerTwo = 'PlayerTwo'
 ){
     const board = GameBoard();
-    const occupiedCell = [];
+    let occupiedCell = [];
     let onGoing = true;
     const winningCombinations = [
         [1,2,3],
@@ -104,7 +104,11 @@ function GameController(
         for(player of players){
             player['markerPos'] = [];
         }
+        
+        
+        
         activePlayer = players[0];
+        occupiedCell = [];
         board.createBoard();
         console.log("Restart Successful");
 
