@@ -252,6 +252,10 @@ function ScreenController(){
         const activePlayer = game.getActivePlayer();
         playerTurnDiv.textContent = `${activePlayer.name}'s turn...`;
 
+        if(!game.getGameStatus()){
+            playerTurnDiv.textContent = game.getResult();
+        }
+
 
         board.forEach((row) => {
             row.forEach((cell)=>{
@@ -263,10 +267,7 @@ function ScreenController(){
 
                 markedCell = cellButton.id == 'x' || cellButton.id == 'y'
                 if(markedCell) cellButton.disabled=true;
-
-                
-
-                
+  
                 boardDiv.appendChild(cellButton);
             })
         })
