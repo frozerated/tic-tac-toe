@@ -263,11 +263,12 @@ function ScreenController(){
                 
                 cellButton.classList = 'cell';
                 cellButton.id = cell;
-                cellButton.textContent = cell;
-
                 markedCell = cellButton.id == 'x' || cellButton.id == 'y'
-                if(markedCell) cellButton.disabled=true;
-  
+                if(markedCell) {
+                    cellButton.disabled=true;
+                    cellButton.textContent = cell;
+                }
+                
                 boardDiv.appendChild(cellButton);
             })
         })
@@ -278,12 +279,7 @@ function ScreenController(){
 
     function clickHandler(event){
         const selectedCell = event.target.id;
-        if(!selectedCell) return;
-
-        cellButton = document.getElementById(event.target.id)
-
-        
-
+        if(!selectedCell) return;        
         game.playRound(selectedCell);
         updateScreen();
 
