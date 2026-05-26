@@ -4,7 +4,6 @@ function GameBoard(){
     let board = []; 
   
 
-    
     const createBoard = () =>{
         let cellVal = 1;
         for(let i = 0; i < row; i++){
@@ -205,10 +204,8 @@ function GameController(
 
 function ScreenController(){
     const game = GameController();
-    const boardContainer = document.querySelector('.board')
     const resetButton = document.querySelector('#reset');
     const restartButton = document.querySelector('#restart');
-    const board = game.getBoard();
 
 
 
@@ -238,30 +235,54 @@ function ScreenController(){
     }
 
 
+    const playerTurnDiv = document.querySelector(".turn");
+    const boardDiv = document.querySelector(".board");
 
-    const displayBoard = () =>{
-        for(row of board){
-            for(cell of row){
-                let cellButton = document.createElement('button');
-                cellButton.textContent =cell;
-                cellButton.id = cell;
+    const updateScreen = () =>{
+        const board = game.getBoard();
+        boardDiv.textContent ='';
+        
+        
+        const activePlayer = game.getActivePlayer();
+        playerTurnDiv.textContent = `${activePlayer.name}'s turn...`;
+
+
+        board.forEach((row) => {
+            row.forEach((cell)=>{
+                const cellButton = document.createElement('button');
+                
                 cellButton.classList = 'cell';
-                cellButton.addEventListener('click', event =>{
-                    const activePlayer = game.getActivePlayer();
+                cellButton.id = cell;
+                cellButton.textContent = cell;
 
-                    if(game.getGameStatus()){
-                        cellButton.textContent = activePlayer.marker;
-                        cellButton.disabled = true;
-                        game.playRound(event.target.id);
-                        
-                    }
-                    updateScoreDisplay();
-                })
-                boardContainer.appendChild(cellButton);
+                markedCell = cellButton.id == 'x' || cellButton.id == 'y'
+                if(markedCell) cellButton.disabled=true;
 
-            }
-        }
+                
+
+                
+                boardDiv.appendChild(cellButton);
+            })
+        })
+
+        updateScoreDisplay();
+
     }
+
+    function clickHandler(event){
+        const selectedCell = event.target.id;
+        if(!selectedCell) return;
+
+        cellButton = document.getElementById(event.target.id)
+
+        
+
+        game.playRound(selectedCell);
+        updateScreen();
+
+    }
+
+    boardDiv.addEventListener('click', clickHandler)
 
 
 
@@ -275,7 +296,7 @@ function ScreenController(){
 
 
 
-    displayBoard();
+    updateScreen();
     controllerFunc();
     
 
