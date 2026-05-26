@@ -130,6 +130,14 @@ input{
     padding:4px 18px;
     width: 400px
 }
+.name:focus{
+    background-color: var(--name-input-focus-bg-color);
+    outline: none;
+}
+
+.name::placeholder{
+    color: var(--name-input-placeholder-color);
+}
 
 .player-container{
     display:grid;
